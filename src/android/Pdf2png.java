@@ -11,10 +11,16 @@ public class Pdf2png extends CordovaPlugin {
 
   @Override
   public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-      if (action.equals("getPage")) {
-          callbackContext.success("ToDo");
-          return true;
-      }
-      return false;
+    if (action.equals("getPage")) {
+        callbackContext.success("ToDo");
+        return true;
+    } else if (action.equals("getPageInForeground")) {
+        callbackContext.success("ToDo");
+        return true;
+    } else if (action.equals("closePDF")) {
+        callbackContext.success("ToDo");
+        return true;
+    }
+    return false;
   }
 }
