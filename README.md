@@ -50,5 +50,5 @@ TODO:
 * Thanks to other authors
 * PNG | JPEG formats
 
-ToDo Android
-Finalize Android Plugin
+TODO Android: 
+* Finalize Android Plugin
