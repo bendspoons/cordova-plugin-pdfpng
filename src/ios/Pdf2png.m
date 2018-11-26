@@ -80,7 +80,7 @@ static NSString* openedPdfURL=nil;
                                                     CGColorSpaceCreateDeviceRGB(), (CGBitmapInfo) kCGImageAlphaPremultipliedLast);
 
     //CGPDFDocumentRef pdfDocument = MyGetPDFDocumentRef();  // NOTE: you will need to modify this line to supply the CGPDFDocumentRef for your file here...
-    // NSLog(@"Pdf2page # <%@>", pageNum);    
+    // NSLog(@"Pdf2page # <%@>", pageNum);
     CGPDFPageRef pdfPage = CGPDFDocumentGetPage(pdfDocument, pageNum);  // get the first page for your thumbnail
 
     CGAffineTransform shrinkingTransform =
@@ -120,7 +120,7 @@ static NSString* openedPdfURL=nil;
     //     imageDataObject = UIImagePNGRepresentation(theUIImage);
     // } else {
     //     imageDataObject = UIImageJPEGRepresentation(theUIImage, (quality/100));
-    // }    
+    // }
 
     NSString *encodedString = [UIImagePNGRepresentation(theUIImage) base64Encoding];
 
@@ -134,7 +134,8 @@ static NSString* openedPdfURL=nil;
 
 CGPDFDocumentRef MyGetPDFDocumentRef(NSString *inputPDFFileURL)
 {
-    NSString *inputPDFFile = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:inputPDFFileURL];
+    //NSString *inputPDFFile = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:inputPDFFileURL];
+    NSString *inputPDFFile = inputPDFFileURL;
 
     const char *inputPDFFileAsCString = [inputPDFFile cStringUsingEncoding:NSUTF8StringEncoding];
     //NSLog(@"expecting pdf file to exist at this pathname: \"%s\"", inputPDFFileAsCString);
@@ -162,7 +163,7 @@ CGPDFDocumentRef MyGetPDFDocumentRef(NSString *inputPDFFileURL)
     NSLog(@"Pdf2png, open pdf <%@>", message);
     openedPdf=MyGetPDFDocumentRef(message);
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ok"];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)getPageInForeground:(CDVInvokedUrlCommand*)command {
@@ -187,7 +188,7 @@ CGPDFDocumentRef MyGetPDFDocumentRef(NSString *inputPDFFileURL)
     if (autoRelease) {
         if (openedPdfURL!=nil) {
             CGPDFDocumentRelease(openedPdf);
-            NSLog(@"Pdf2png, release of PDF: <%@> <%@>", openedPdfURL, pdfFile);        
+            NSLog(@"Pdf2png, release of PDF: <%@> <%@>", openedPdfURL, pdfFile);
         }
         openedPdfURL=nil;
     }
@@ -198,16 +199,16 @@ CGPDFDocumentRef MyGetPDFDocumentRef(NSString *inputPDFFileURL)
 }
 
 - (void)closePDF:(CDVInvokedUrlCommand*)command {
-    
+
     if (openedPdfURL!=nil) {
         CGPDFDocumentRelease(openedPdf);
-        NSLog(@"Pdf2png, release of PDF: <%@>", openedPdfURL);        
+        NSLog(@"Pdf2png, release of PDF: <%@>", openedPdfURL);
     }
-    openedPdfURL=nil;    
+    openedPdfURL=nil;
 
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"PDF closed"];
 
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];        
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)getPage:(CDVInvokedUrlCommand*)command {
@@ -229,13 +230,13 @@ CGPDFDocumentRef MyGetPDFDocumentRef(NSString *inputPDFFileURL)
             openedPdfURL=pdfFile;
         }
         NSString *pdfPageBase64png = [self buildThumbnailImage:openedPdf pageNum:pageNum pageWidth:pageWidth pageHeight:pageHeight];
-        
-        
+
+
 
         if (autoRelease) {
             if (openedPdfURL!=nil) {
                 CGPDFDocumentRelease(openedPdf);
-                NSLog(@"Pdf2png, release of PDF: <%@> <%@>", openedPdfURL, pdfFile);        
+                NSLog(@"Pdf2png, release of PDF: <%@> <%@>", openedPdfURL, pdfFile);
             }
             openedPdfURL=nil;
         }
