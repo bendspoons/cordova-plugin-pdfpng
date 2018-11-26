@@ -8,29 +8,37 @@
     <description>Cordova Plugin Returns converted into base64 format PNG from local PDF page. Can be used for creating thumbnails of PDF pages without need to store full sized images.</description>
     <license>Apache 2.0</license>
     <keywords>cordova,plugin,pdf,png,base64</keywords>
-    <author>Lisunov Ilia (developer@ipads.cz)</author>
-    
+    <author>Lisunov Ilia (developer@ipads.cz) for iOS, Dominic Roesmann (d.roesmann@dimento.com) for Android</author>
+
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
-    </engines>    
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/Pdf2png.js" name="Pdf2png">
+      <clobbers target="pdf2png" />
+    </js-module>
 
     <!-- ios -->
     <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Pdf2png">
-                <param name="ios-package" value="Pdf2png"/>
-                <param name="onload" value="true" />
-            </feature>
-        </config-file>
+      <config-file target="config.xml" parent="/*">
+        <feature name="Pdf2png">
+          <param name="ios-package" value="Pdf2png"/>
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
 
-        <js-module src="www/Pdf2png.js" name="Pdf2png">
-            <clobbers target="pdf2png" />
-        </js-module>
-
-        <header-file src="src/ios/Pdf2png.h" />
-        <source-file src="src/ios/Pdf2png.m" />
-        
+      <header-file src="src/ios/Pdf2png.h" />
+      <source-file src="src/ios/Pdf2png.m" />
     </platform>
 
+    <platform name="android">
+      <config-file target="config.xml" parent="/*">
+        <feature name="Pdf2png">
+          <param name="android-package" value="com.dimento.cordova.plugin.Pdf2png"/>
+        </feature>
+      </config-file>
+
+      <source-file src="src/android/Pdf2png.java" target-dir="src/com/dimento/cordova/plugin" />
+    </platform>
 
 </plugin>
