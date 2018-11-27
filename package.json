@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-pdf2png",
+  "version": "0.0.3",
+  "description": "PDF to PNG Converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendspoons/cordova-plugin-pdf2png.git"
+  },
+  "author": "Dominic Roesmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bendspoons/cordova-plugin-pdf2png/issues"
+  },
+  "homepage": "https://github.com/bendspoons/cordova-plugin-pdf2png#readme"
+}
