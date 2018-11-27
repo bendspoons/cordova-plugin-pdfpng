@@ -19,6 +19,8 @@ import java.io.ByteArrayOutputStream;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.pdf.PdfRenderer;
 import android.graphics.pdf.PdfRenderer.Page;
 
@@ -79,7 +81,13 @@ public class Pdf2png extends CordovaPlugin {
                 renderer = new PdfRenderer(ParcelFileDescriptor.open(sourceFile, ParcelFileDescriptor.MODE_READ_ONLY));
 
                 try {
-                    Bitmap bitmap = Bitmap.createBitmap(useWidth, useHeight, Bitmap.Config.ARGB_4444);
+                    Bitmap preBitmap = Bitmap.createBitmap(useWidth, useHeight, Bitmap.Config.ARGB_4444);
+
+                    Bitmap bitmap = Bitmap.createBitmap(preBitmap.getWidth(), preBitmap.getHeight(), preBitmap.getConfig());
+
+                    Canvas canvas = new Canvas(bitmap);
+                    canvas.drawColor(Color.WHITE);
+                    canvas.drawBitmap(preBitmap, 0, 0, null);
 
                     Page page = renderer.openPage(usePage);
 
@@ -96,8 +104,8 @@ public class Pdf2png extends CordovaPlugin {
 
                     if(autoRelease) {
                         renderer.close();
-                        jsonObj.put("pdf_released", true);
                         renderer = null;
+                        jsonObj.put("pdf_released", true);
                     } else {
                         jsonObj.put("pdf_released", false);
                     }
@@ -122,6 +130,7 @@ public class Pdf2png extends CordovaPlugin {
             } else {
                 try {
                     renderer.close();
+                    renderer = null;
                     callbackContext.success("PDF has been closed");
                 } catch (Exception e) {
                     callbackContext.error("Could not close PDF");
