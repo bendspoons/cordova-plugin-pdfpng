@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="cz.doublev.cordova.plugin.pdf2png"
+    id="com.bendspoons.cordova.plugin.pdf2png"
     version="0.3.0">
 
     <name>PDF2PNG</name>
@@ -34,11 +34,13 @@
     <platform name="android">
       <config-file target="config.xml" parent="/*">
         <feature name="Pdf2png">
-          <param name="android-package" value="com.dimento.cordova.plugin.Pdf2png"/>
+          <param name="android-package" value="com.bendspoons.cordova.plugin.Pdf2png"/>
         </feature>
       </config-file>
 
-      <source-file src="src/android/Pdf2png.java" target-dir="src/com/dimento/cordova/plugin" />
+      <resource-file src="libs/java-rt-jar-stubs-1.5.0.jar" target="libs/java-rt-jar-stubs-1.5.0.jar" />
+
+      <source-file src="src/android/Pdf2png.java" target-dir="src/com/bendspoons/cordova/plugin" />
     </platform>
 
 </plugin>
