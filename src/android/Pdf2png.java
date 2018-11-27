@@ -158,9 +158,6 @@ public class Pdf2png extends CordovaPlugin {
         } else if (action.equals("getPageInForeground")) {
             callbackContext.error("Feature not implemented for Android");
             return true;
-        } else if (action.equals("closePDF")) {
-            callbackContext.success("ToDo");
-            return true;
         }
         return false;
     }
