@@ -99,20 +99,21 @@ public class Pdf2png extends CordovaPlugin {
 
                     imageBase64Data = convert(bitmap);
 
-                    JSONObject jsonObj = new JSONObject();
-                    jsonObj.put("page", usePage+1);
+                    //JSONObject jsonObj = new JSONObject();
+                    //jsonObj.put("page", usePage+1);
 
                     if(autoRelease) {
                         renderer.close();
                         renderer = null;
-                        jsonObj.put("pdf_released", true);
+                        //jsonObj.put("pdf_released", true);
                     } else {
-                        jsonObj.put("pdf_released", false);
+                        //jsonObj.put("pdf_released", false);
                     }
 
-                    jsonObj.put("base64", imageBase64Data);
+                    //jsonObj.put("base64", imageBase64Data);
 
-                    callbackContext.success(jsonObj);
+                    //callbackContext.success(jsonObj);
+                    callbackContext.success(imageBase64Data);
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -149,10 +150,11 @@ public class Pdf2png extends CordovaPlugin {
                 try {
                     final int pageCount = renderer.getPageCount();
 
-                    JSONObject jsonObj = new JSONObject();
-                    jsonObj.put("pages", pageCount);
+                    //JSONObject jsonObj = new JSONObject();
+                    //jsonObj.put("pages", pageCount);
 
-                    callbackContext.success(jsonObj);
+                    //callbackContext.success(jsonObj);
+                    callbackContext.success(pageCount);
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
