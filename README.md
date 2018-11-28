@@ -1,5 +1,8 @@
-cordova-plugin-pdf2png
+cordova-plugin-pdfpng
 ======================
+
+``` cordova plugin add https://github.com/bendspoons/cordova-plugin-pdfpng.git ```
+
 This is cordova v3.0+ plugin that allows user to get png base64 image from any page of pdf file.
 
 The usage of plugin:
@@ -53,7 +56,7 @@ Recommended use with Android Studio and gradle 4.4
 
 ```<preference name="android-minSdkVersion" value="21" />```
 
-Set this in your config.xml, needed for android.graphics.pdf.*, only available from API 26 (Android 5.0)
+Set this in your config.xml, needed for android.graphics.pdf.*, only available from API 21 (Android 5.0)
 
 ```java-rt-jar-stubs-1.5.0```
 
